@@ -26,3 +26,22 @@ We need complex/advanced text processing. Some of the issues include:
 2. How well can we form threads by matching on subject lines?
 3. Do duplicates extracted from RE/FW serve any useful purpose?
 4. What is the percentage of threads for which we can find the parent mail (the mail that started the thread)?
+
+## Experiment 1
+
+The first design plots all thread lines between 2016 and 2020 on one chart.
+
+![](figures/threadlines_1.svg)
+
+
+## Experiment 2
+
+The second design uses `trelliscopejs` to plot the same information in smaller pieces.
+
+![](figures/trelliscope.png)
+
+The user can switch between 27 panes, each containing about 20 threads.
+
+## Experiment 3
+
+
