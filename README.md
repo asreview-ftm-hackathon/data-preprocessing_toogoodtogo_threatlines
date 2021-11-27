@@ -2,7 +2,7 @@
 We're the hackathon leftovers, but we are Too Good To Go ;-). A repo by Lukas Schubotz, Stef van Buuren, and Raymon van Dinter. We aim to improve current data preprocessing for FTM's WOB data to analyze Shell and Dutch Governmental contacts.
 
 
-## Visualisation idea
+## Synchronous visualisation of email threads
 
 Publications from the FTM "Dossier SHELL papers" <https://www.ftm.nl/dossier/shell-papers> suggest that timing of events is critical in the interactions between actors. It would therefore be useful if we could visualise the mail exchanges in time.
 
@@ -10,11 +10,19 @@ The idea is to visualise threads of mail exchanges between actors over time. Whe
 
 ![](figures/simple.png)
 
-See <https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.88.9825&rep=rep1&type=pdf> for variations on this display, for example by adding the interactions between the actors. 
+See <https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.88.9825&rep=rep1&type=pdf> for variations on this display, for example by adding the interactions between the actors by fancy arcs and resorting the mails according to actor pairs.
 
 ![](figures/complex.png)
 
-A generalisation to multiple simulataneous threads would stack multiple lines in a vertical way. Such a design calls for relatively simple thread displays that are synchronised in time. Therefore we will concentrate on using a simple **thread-line** that plots mail chronology against calender time. 
+A generalisation to multiple simulataneous threads would stack multiple lines, similar to a dot plot. Such a design calls for relatively simple thread displays that are synchronised in time. Therefore we will concentrate on using a simple **thread line** that plots mail chronology against calender time. 
 
-A somewhat grander idea would be to create a "film of events". This would place a cursor on the time axis, and allow the user to scroll through time. The new information per mail is displayed, for example by tiptools. 
+A somewhat grander idea would be to create a "film of events". The user would place a cursor on the time axis, and scroll through time. The new information per mail is displayed as the cursor passes the send time of the email. 
 
+## Issues to resolve
+
+We need complex/advanced text processing. Some of the issues include:
+
+1. How can we split multiple emails in a RE/FW into a set of elementary mails, each corresponding to just one sender?
+2. How well can we form threads by matching on subject lines?
+3. Do duplicates extracted from RE/FW serve any useful purpose?
+4. What is the percentage of threads for which we can find the parent mail (the mail that started the thread)?
