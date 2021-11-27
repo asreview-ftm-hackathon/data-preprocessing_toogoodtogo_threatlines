@@ -57,6 +57,15 @@ def word_cloud(words,
 
 if __name__ == "__main__":
     df = pd.read_csv(r'../data/processed_data.csv', sep='|')
-    mail = df.abstract
+    mail = df[df.doc_type == 'Mail'].abstract
     word_cloud(mail, width=3000, height=2000, max_words=250,
-               output_fp='../figures/wordcloud.png')
+               output_fp='../figures/wordcloud_mail.png')
+
+    word_cloud(df.abstract, width=3000, height=2000, max_words=250,
+               output_fp='../figures/wordcloud_abstract.png')
+
+    word_cloud(df.title, width=3000, height=2000, max_words=250,
+               output_fp='../figures/wordcloud_title.png')
+
+    word_cloud(df.title + df.abstract, width=3000, height=2000, max_words=250,
+               output_fp='../figures/wordcloud_title.png')
