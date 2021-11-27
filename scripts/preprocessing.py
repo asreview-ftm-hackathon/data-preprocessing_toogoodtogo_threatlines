@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 # Set some regex filters
 FILTER_ID = '^[0-9\\.]+'
 FILTER_DOCTYPE = '(?<=[0-9\\_]\\_)[a-z A-Z]+(?=\\_)'
-FILTER_DATE = '[0-9-?]+(?=.pftm_df$)'
+FILTER_DATE = '[0-9-?]+(?=.pdf$)'
 FILTER_SENDER = '\nvan|\nVan:|\n\n   Van|\n\nFrom'
 FILTER_BETTER_DATE = '(?<=Date : )[0-9-]{3,5}-20[0-9]{2} [0-9:]{8}'
 FILTER_VERZONDEN = 'Verzonden: (.*)'
@@ -117,7 +117,7 @@ def search_id_type_date(ftm_df):
             FILTER_DOCTYPE,
             title).group(0) if re.search(
             FILTER_DOCTYPE,
-            title) else "Onbekend")
+            title) else "Onbekend").str.strip()
     ftm_df['date'] = ftm_df.title.apply(
         lambda title: dateparser.parse(
             re.search(
@@ -243,6 +243,7 @@ def get_sender(ftm_df):
                             ].abstract.apply(lambda row: None
                                              if row.split('\n', 1)[0] == ''
                                              else row.split('\n', 1)[0])
+    ftm_df.email_sender = ftm_df.email_sender.str.strip(' }{:><)(')
     return ftm_df
 
 
@@ -266,6 +267,8 @@ def get_retriever(ftm_df):
     ftm_df['receiver_to'] = ftm_df[ftm_df.doc_type == 'Mail'].abstract.apply(lambda row: re.search(
         FILTER_TO, row).group(1) if re.search(FILTER_TO, row) else None)
     ftm_df['email_receiver'] = ftm_df['receiver_aan'].fillna(ftm_df['receiver_to'])
+    
+    ftm_df.email_receiver = ftm_df.email_receiver.str.strip(' }{:><)(')
     return ftm_df.drop(columns=['receiver_aan', 'receiver_to'])
 
 
@@ -285,6 +288,6 @@ def clean_title(title):
 
     """
     title = re.sub('^[0-9\\.]+_+[a-z A-Z]+_', '', title)
-    title = re.sub('[0-9\\-]+.pftm_df$', '', title)
+    title = re.sub('[0-9\\-]+.pdf$', '', title)
     title = re.sub('.msg_', ' ', title)
     return title

@@ -3,8 +3,8 @@ import load_data
 import preprocessing as pp
 
 # load data from the FTM repo. Comment if already downloaded and saved.
-load_data.get_and_save_ftm_data('https://github.com/ftmnl/asr/raw/main/data/allExport.csv', 
-                                '../data/allExport.csv')
+# load_data.get_and_save_ftm_data('https://github.com/ftmnl/asr/raw/main/data/allExport.csv', 
+#                                 '../data/allExport.csv')
 
 # load the locally saved dataset
 df = load_data.get_data('../data/allExport.csv')

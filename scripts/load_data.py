@@ -14,7 +14,7 @@ def get_and_save_ftm_data(path, target):
         target destination.
 
     """
-    pd.read_csv(path, sep='|').to_csv(target, index=False)
+    pd.read_csv(path, sep='|').to_csv(target, index=False, sep='|')
 
 
 def get_data(path):
@@ -32,4 +32,4 @@ def get_data(path):
         pandas.DataFrame of the FTM data.
 
     """
-    return pd.read_csv(path)
+    return pd.read_csv(path, sep='|')
