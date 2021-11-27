@@ -36,14 +36,17 @@ The first design plots all thread lines between 2016 and 2020 on one chart.
 
 ## Experiment 2
 
-The second design uses `trelliscopejs` to plot the same information in smaller pieces (interaction not supported by GitHub markdown).
+The second design uses `trelliscopejs` to plot the same information in smaller pieces.
 
 ![](figures/trelliscope.png)
 
-The user can switch between 27 panes, each containing about 20 threads.
+The user can switch between 27 panes, each containing about 20 threads. 
+
+Try out the [interactive version](https://asreview-ftm-hackathon.github.io/data-preprocessing_toogoodtogo_threatlines/dotplot2/#display=Thread_by_Date&nrow=1&ncol=1&arr=row&pg=1&labels=thread_gp&sort=thread_gp;asc&filter=&sidebar=&fv=)
 
 ## Experiment 3
 
 Back to figure 1, but now plotted with `rbokeh`, so that we may zoom and use tooltips (interaction not supported by GitHub markdown)
 
 ![](figures/rbokeh.png)
+
