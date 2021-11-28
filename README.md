@@ -47,11 +47,11 @@ The first design plots all thread lines between 2016 and 2020 on one chart.
 
 ## Experiment 2
 
-The second design uses `trelliscopejs` to plot the same information in smaller pieces.
+The second design uses `trelliscopejs` to plot the same information in smaller pieces, by the date of thread start.
 
-![](figures/trelliscope.png)
+![](figures/trelliscope2.png)
 
-The user can switch between 27 panes, each containing about 20 threads. 
+The user can switch between 27 panes, each containing about 20 threads, and tooltips provide a quick assessment of the new information in the particular mail.
 
 Try out the [interactive version](https://asreview-ftm-hackathon.github.io/data-preprocessing_toogoodtogo_threatlines/dotplot2/#display=Thread_by_Date&nrow=1&ncol=1&arr=row&pg=1&labels=thread_gp&sort=thread_gp;asc&filter=&sidebar=&fv=)
 
