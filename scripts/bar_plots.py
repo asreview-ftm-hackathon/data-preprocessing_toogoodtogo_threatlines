@@ -17,24 +17,24 @@ ax = df['email_sender'].value_counts()[df['email_sender'].value_counts()> 10].pl
 
 fig = ax.get_figure()
 fig.savefig('../figures/bar_email_sender.png')
-
-# df['email_receiver'] = df['email_receiver'].apply(lambda x: x if len(str(x)) < 60 else None)
+#%%
+df['email_receiver'] = df['email_receiver'].apply(lambda x: x if len(str(x)) < 60 else None)
 
 ax = df['email_receiver'].value_counts()[df['email_receiver'].value_counts()> 10].plot.bar()
 
 fig = ax.get_figure()
 fig.savefig('../figures/bar_email_receiver.png')
-
+#%%
 ax = df.doc_type.value_counts().plot.bar()
 fig = ax.get_figure()
 fig.savefig('../figures/bar_doc_type.png')
-
+#%%
 df["date"] = pd.to_datetime(df.date)
 
 ax = df.groupby([df["date"].dt.year, df["date"].dt.month]).index.count().plot.bar(figsize=(40,8))
 fig = ax.get_figure()
 fig.savefig('../figures/bar_date.png')
-
+#%%
 df["betterDate"] = pd.to_datetime(df.betterDate, utc=True)
 ax = df.groupby([df["betterDate"].dt.year, df["betterDate"].dt.month]).index.count().plot.bar(figsize=(40,8))
 fig = ax.get_figure()
