@@ -27,6 +27,17 @@ We need complex/advanced text processing. Some of the issues include:
 3. Do duplicates extracted from RE/FW serve any useful purpose?
 4. What is the percentage of threads for which we can find the parent mail (the mail that started the thread)?
 
+## Data preprocessing
+So for the data preprocessing step, we have based our work on Jelle Teijema's Notebook. However, we optimized some of the code, and provided some extensions. As additions, we added:
+* emails that have been forwarded or replied are split into a new row for each email. The RE and FW, however, retain the original `doc_id`. The newest email gets a flag 1 for `is_novel`, while the original email gets a flag 1 for `is_threat_starter`.
+* As RE and FW emails often contain an `Aan:` or `To:` tag, we can extract the `email_sender`.
+* The RE and FW emails also often contain a `From:` or `Van:`, which we extracted to `email_retriever`.
+* We added a feature to `betterDate`, where we extract the date from the content.
+* An email often starts with an opening, like `Beste`, and a name. We extracted the names and placed them to `opening`.
+* An email also often ends with a closing, like `Met vriendelijke groet`. We extracted these to `closing`.
+* After removing this metadata, we end up with `formatted_abstract`.
+* Persons oftentimes have the same ID or scrubbed name, where we can perform analysis on.
+
 ## Experiment 1
 
 The first design plots all thread lines between 2016 and 2020 on one chart.
