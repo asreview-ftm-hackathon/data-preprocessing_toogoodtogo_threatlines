@@ -3,11 +3,13 @@
 # install.packages("readr")
 # install.packages("lubridate")
 # install.packages("trelliscopejs")
+# install.packages("plotly")
 library("readr")
 library("dplyr")
 library("stringr")
 library("lubridate")
 library("trelliscopejs")
+library("plotly")
 library("ggplot2")
 
 
@@ -44,12 +46,13 @@ mail <- data %>% filter(doc_type == "Mail") %>%
          quarter = trunc(1 + month(betterDate) / 4),
          month = month(betterDate))
 
-g <- ggplot(mail, aes(x = betterDate, y = reorder(id, thread_seq))) +
+g <- ggplot(mail, aes(x = betterDate, y = reorder(id, thread_seq)), name = ) +
   geom_point(size = 0.7) +
   scale_y_discrete("Thread number") +
   geom_point(
     size = 0.7,
-    shape = 1) +
+    shape = 1,
+    aes(text = title, text2 = abstract)) +
   facet_trelliscope(
     vars(thread_gp),
     name = "Thread by Date",
@@ -57,7 +60,9 @@ g <- ggplot(mail, aes(x = betterDate, y = reorder(id, thread_seq))) +
     nrow = 1,
     data = mail,
     scales = "free",
-    path = "dotplot2") +
+    path = "dotplot2",
+    as_plotly = TRUE) +
   theme(legend.position = "none")
+
 g
 
