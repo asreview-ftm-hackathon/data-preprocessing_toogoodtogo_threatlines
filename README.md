@@ -61,3 +61,8 @@ Back to figure 1, but now plotted with `rbokeh`, so that we may zoom and use too
 
 ![](figures/rbokeh.png)
 
+## Experiment 4
+
+As figure 1, but with toolstips
+
+![](figures/dotplot4.png)
